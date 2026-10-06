@@ -32,20 +32,28 @@ MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_PORT = int(os.getenv("MYSQL_PORT", 3306))
 MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 
-engine_mysql = create_engine("mysql+pymysql://root:@localhost:3306/aviao")
+engine_mysql = create_engine(f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}")
 engine_sqllite = create_engine("sqlite:///pessoas.db")
 
 engine = None
-
-print("Bem-vindo(a)!")
-print("Qual bando de dados você quer usar?"
-      "1- MySQL"
-      "2- SQLlite")
-resposta=int(input())
-if resposta == 1:
-     engine=engine_mysql 
-     Base.metadata.create_all(engine)
-if resposta == 2:
-    engine=engine_sqllite
-    Base.metadata.create_all(engine)
-
+r = True
+while r == True:
+    print("Bem-vindo(a)!")
+    print("Qual bando de dados você quer usar?"
+        "1- MySQL"
+        "2- SQLlite")
+    resposta=int(input())
+    if resposta == 1:
+        engine=engine_mysql 
+        Base.metadata.create_all(engine)
+        print("O que você gostaria de fazer?"
+              "1- Inserir"
+              "2- Listar"
+              "3- Excluir")
+    if resposta == 2:
+        engine=engine_sqllite
+        Base.metadata.create_all(engine)
+        print("O que você gostaria de fazer?"
+              "1- Inserir"
+              "2- Listar"
+              "3- Excluir")
