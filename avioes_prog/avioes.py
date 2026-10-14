@@ -96,10 +96,18 @@ while r == True:
         if resposta == 1:
             print("Informe o id do avião que quer deletar:")
             id_aviao= int(input())
-            stmt= delete(Aviao).where(Aviao.id_aviao == id_aviao)
-            session.execute(stmt)
+            aviao_para_deletar = session.get(Aviao, id_aviao)
+            session.delete(aviao_para_deletar)
             session.commit()
             print("Avião foi deletado!")
+        if resposta == 2:
+            print("Informe o ID do trajeto que quer deletar:")
+            id_trajeto = int(input())
+            trajeto_para_deletar = session.get(Trajeto, id_trajeto)
+            session.delete(trajeto_para_deletar)
+            session.commit()
+            print("Trajeto foi deletado!")
+
     print("Gostaria de continuar?\n1- Sim\n2- Não")
     resposta=int(input())
     if resposta == 2: 
