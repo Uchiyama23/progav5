@@ -4,10 +4,11 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Igor", email = "alexandre.ivonete@gmail.com" }
+    { name = "", email = "" }
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "pymysql>=1.2.3",
     "python-dotenv>=1.2.3",
     "sqlalchemy>=2.1.1",
 ]
